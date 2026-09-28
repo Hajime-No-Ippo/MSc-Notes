@@ -3,7 +3,7 @@ tags: [cs422, robotics, automation, lecture-notes]
 module: CS422
 topic: "Introduction to Robotics"
 date: 2026-09-22
-next: "[[]]"
+next: "2026-09-28 - Linkages, Mechanisms & Kinematics"
 prev: ""
 ---
 

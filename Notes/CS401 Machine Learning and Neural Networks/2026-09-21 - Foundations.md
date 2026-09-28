@@ -3,7 +3,7 @@ tags: [cs401, ml, neural-networks, lecture-notes]
 module: CS401
 topic: "ML & Neural Networks — Foundations"
 date: 2026-09-21
-next: "[[]]"
+next: "2026-09-28 - Linear Models"
 prev: ""
 ---
 

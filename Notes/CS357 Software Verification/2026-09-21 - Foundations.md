@@ -3,7 +3,7 @@ tags: [cs357, software-verification, lecture-notes]
 module: CS357
 topic: "Software Verification — Foundations"
 date: 2026-09-21
-next: "[[]]"
+next: "2026-09-28 - Natural Deduction"
 prev: ""
 ---
 
