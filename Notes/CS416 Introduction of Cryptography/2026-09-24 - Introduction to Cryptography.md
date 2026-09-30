@@ -3,7 +3,7 @@ tags: [cs416, cryptography, lecture-notes]
 module: CS416
 topic: "Introduction to Cryptography"
 date: 2026-09-24
-next: "[[]]"
+next: "[[2026-09-28 - Number Theory & Classical Ciphers]]"
 prev: ""
 ---
 
