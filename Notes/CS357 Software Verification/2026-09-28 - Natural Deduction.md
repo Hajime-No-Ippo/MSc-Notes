@@ -3,8 +3,8 @@ tags: [cs357, software-verification, lecture-notes]
 module: CS357
 topic: "Software Verification — Natural Deduction"
 date: 2026-09-28
-next: "[[]]"
-prev: "2026-09-21 - Foundations"
+next: "[[2026-10-01 - Lab 1 Logic & Propositional Translation]]"
+prev: "[[2026-09-21 - Foundations]]"
 ---
 
 # Software Verification — Natural Deduction
