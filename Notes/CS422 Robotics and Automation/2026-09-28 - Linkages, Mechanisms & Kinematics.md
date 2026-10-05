@@ -172,6 +172,98 @@ where **i**, **j**, **k** are unit vectors along the X, Y, Z axes.
 
 But **rotations** are 3×3 matrix multiplications, while **translations** are additions. You can't combine them into a single matrix operation in 3D.
 
+### First, the 2D Case — 3×3 Matrices
+
+Planar arms (SCARA, and the 2-link arm from the slide) hit the *same* problem in 2D: rotation is a 2×2 matrix multiply, translation is an addition. Adding one dummy coordinate of 1 at the bottom turns translation into a matrix multiply too.
+
+$$[x \;\; y]^T \;\longrightarrow\; [x \;\; y \;\; 1]^T$$
+
+The general 2D homogeneous transformation matrix:
+
+```
+┌                    ┐
+│   r11    r12     xt│
+│   r21    r22     yt│
+│    0      0      1│
+└                    ┘
+```
+
+| Block | Meaning |
+|---|---|
+| Top-left 2×2 | Rotation (and/or scale) |
+| Rightmost column (xt, yt) | Translation offsets |
+| Bottom row (0 0 1) | Homogeneous padding — always the same (the *perspective* row; leave it zero unless doing projections) |
+
+**How to read it** — what it does to a point:
+
+```
+x' = r11·x + r12·y + xt
+y' = r21·x + r22·y + yt
+w' =  0·x +  0·y +  1     → always 1, so x/w' = x' and y/w' = y'
+```
+
+This is the 2D twin of the 4×4 DH matrix read below — identical structure, one dimension smaller.
+
+#### 1. Pure rotation
+
+$$R(\theta) = \begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+
+```
+┌              ┐
+│ Cθ   -Sθ   0 │
+│ Sθ    Cθ   0 │
+│  0     0   1 │
+└              ┘
+```
+
+- **Top-left 2×2**: cos θ on the main diagonal, sin θ on the anti-diagonal — rotates about the origin
+- **Rightmost column (0, 0)**: a pure rotation must **not** shift the origin
+
+#### 2. Pure translation
+
+$$T(L_x, L_y) = \begin{bmatrix} 1 & 0 & L_x \\ 0 & 1 & L_y \\ 0 & 0 & 1 \end{bmatrix}$$
+
+```
+┌              ┐
+│  1    0    Lx│
+│  0    1    Ly│
+│  0    0    1 │
+└              ┘
+```
+
+- **Top-left 2×2 = Identity**: zero rotation, zero scaling — the original (x, y) is preserved and passed straight through
+- **Diagonal of 1s**: applies the identity, so only the offset is added
+- **Rightmost column**: the offsets (on the slide, L₁ along x and 0 along y)
+
+#### 3. Why 3×3 and not 2×2?
+
+In 2D Cartesian space, translation **cannot** be expressed as matrix multiplication. You would be stuck with two separate operations:
+
+$$p_{new} = R \cdot p + T$$
+
+Adding the dummy coordinate 1 at the bottom converts that into a single multiplication — and any chain of moves collapses into one matrix product:
+
+$$p = R_1 T_1 R_2 T_2 \cdot p$$
+
+> [!note] Order matters
+> Column vectors mean matrices act **right to left** — the rightmost transform is applied first. `R₁T₁R₂T₂` means *rotate 2 → translate 2 → rotate 1 → translate 1*.
+
+**Worked example** — the 2-link planar arm, which reproduces the SCARA forward kinematics above:
+
+```
+T₁₂ = T(L₁,0) · R(θ₁) · T(L₂,0) · R(θ₂)
+```
+
+$$x = L_1 \cos\theta_1 + L_2 \cos(\theta_1 + \theta_2)$$
+$$y = L_1 \sin\theta_1 + L_2 \sin(\theta_1 + \theta_2)$$
+
+**Inverting** — going from frame 2 back to frame 1 (the matrix route to inverse kinematics). For a rotation + translation matrix, transpose the rotation and negate the rotated offset:
+
+$$T^{-1} = \begin{bmatrix} R^T & -R^T t \end{bmatrix}$$
+
+> [!tip] Same idea, one dimension higher
+> 2×2 → 3×3 → 4×4. The bottom row `(0 0 0 1)` in the DH matrix is exactly the 2D bottom row `(0 0 1)` with one more zero, and the "divide by w" rule is what recovers real coordinates after projection.
+
 ### The Solution — Add a Fourth Coordinate
 
 Represent the 3D vector as a **4D vector** with w = 1:
@@ -363,6 +455,7 @@ graph TD
     H --> M[Articulated RRR]
     L --> N[Inverse Kinematics]
     N --> O[Homogeneous Coordinates]
+    O --> O2[2D — 3×3 Matrix]
     O --> P[DH Convention]
     P --> Q[4×4 Matrix]
     P --> R[4 DH Parameters]
