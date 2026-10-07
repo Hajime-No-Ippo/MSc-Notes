@@ -3,7 +3,7 @@ tags: [cs357, lab, logic, lecture-notes]
 module: CS357
 topic: "Lab 1 — Logic & Propositional Translation"
 date: 2026-10-01
-next: "[[]]"
+next: "[[2026-10-07 - Lab 1 Rocq Proofs]]"
 prev: "[[2026-09-28 - Natural Deduction]]"
 ---
 

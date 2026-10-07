@@ -151,19 +151,19 @@ Memory:  't' 'h' 'i' 's'  ' '  'i' 's'  ' '  'a'  ' '  's' 't' 'r' 'i' 'n' 'g' '
 if (x > 5) { return x; }
 ```
 
-| Token | Type |
-|---|---|
-| `if` | keyword |
-| `(` | delimiter |
-| `x` | identifier |
-| `>` | operator |
-| `5` | number |
-| `)` | delimiter |
-| `{` | delimiter |
-| `return` | keyword |
-| `x` | identifier |
-| `;` | delimiter |
-| `}` | delimiter |
+| Token    | Type       |
+| -------- | ---------- |
+| `if`     | keyword    |
+| `(`      | delimiter  |
+| `x`      | identifier |
+| `>`      | operator   |
+| `5`      | number     |
+| `)`      | delimiter  |
+| `{`      | delimiter  |
+| `return` | keyword    |
+| `x`      | identifier |
+| `;`      | delimiter  |
+| `}`      | delimiter  |
 
 > [!tip] Why lexical analysis matters
 > The lexer simplifies the parser's job — instead of dealing with individual characters, the parser works with meaningful tokens. This separation of concerns makes compilers modular and easier to build.

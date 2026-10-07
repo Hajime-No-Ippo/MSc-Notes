@@ -3,7 +3,7 @@ tags: [cs416, cryptography, lecture-notes]
 module: CS416
 topic: "Number Theory & Classical Ciphers"
 date: 2026-09-28
-next: "[[]]"
+next: "[[2026-10-07 - Affine Cipher, Digraphs & Zero-Knowledge Protocol]]"
 prev: "[[2026-09-24 - Introduction to Cryptography]]"
 ---
 
