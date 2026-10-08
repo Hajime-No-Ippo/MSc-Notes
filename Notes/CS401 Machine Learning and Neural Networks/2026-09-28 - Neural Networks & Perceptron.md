@@ -3,8 +3,8 @@ tags: [cs401, machine-learning, lecture-notes]
 module: CS401
 topic: "Machine Learning — Neural Networks & Perceptron"
 date: 2026-09-28
-next: "[[]]"
-prev: "2026-09-27 - Gradient Descent"
+next: "[[2026-10-08 - Classification & Regularization]]"
+prev: "[[2026-09-28 - Gradient Descent]]"
 ---
 
 # Machine Learning — Neural Networks & Perceptron

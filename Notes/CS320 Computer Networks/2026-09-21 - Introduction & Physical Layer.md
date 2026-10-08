@@ -3,7 +3,7 @@ tags: [cs320, computer-networks, lecture-notes]
 module: CS320
 topic: "Introduction & Physical Layer"
 date: 2026-09-21
-next: "[[]]"
+next: "[[2026-10-08 - The Web & HTTP]]"
 prev: ""
 ---
 
@@ -39,10 +39,14 @@ A protocol defines **format**, **order**, and **receipt** of messages between en
 
 | Protocol | Layer |
 |---|---|
-| TCP | Transport |
+| HTTP, FTP | Application |
+| TCP | Transport (reliable) |
+| UDP | Transport (best-effort) |
 | IP | Network |
-| HTTP | Application |
 | 802.11 | Link (Wi-Fi) |
+
+> [!tip] TCP vs UDP
+> **TCP** = connection-oriented, reliable, in-order delivery (HTTP, FTP use it). **UDP** = connectionless, best-effort, low overhead (DNS, streaming, VoIP use it). See [[2026-10-08 - The Web & HTTP#TCP vs UDP — Transport Under HTTP|TCP vs UDP]] for the full comparison.
 
 ### Internet Standards
 
