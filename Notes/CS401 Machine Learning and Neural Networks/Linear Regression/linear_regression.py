@@ -29,6 +29,20 @@ def compute_loss(theta0, theta1):
     return total / n
 
 
+# ---- Evaluation Metrics ----
+def mae(theta0, theta1):
+    """Mean Absolute Error = (1/n) * sum(|h(x_i) - y_i|)"""
+    total = 0
+    for i in range(n):
+        total += abs(predict(X[i], theta0, theta1) - Y[i])
+    return total / n
+
+
+def rmse(theta0, theta1):
+    """Root Mean Squared Error = sqrt((1/n) * sum((h(x_i) - y_i)^2))"""
+    return compute_loss(theta0, theta1) ** 0.5
+
+
 # ---- Gradient Descent ----
 def gradient_descent(lr=0.00001, iterations=1000):
     theta0 = 0  # bias
@@ -75,7 +89,9 @@ if __name__ == "__main__":
     print()
     print("=" * 60)
     print(f"Result: h(x) = {theta0:.2f} + {theta1:.4f} * x")
-    print(f"Final loss: {compute_loss(theta0, theta1):.2f}")
+    print(f"Final loss (MSE):  {compute_loss(theta0, theta1):.2f}")
+    print(f"MAE:  {mae(theta0, theta1):.4f}")
+    print(f"RMSE: {rmse(theta0, theta1):.4f}")
     print("=" * 60)
 
     # Predictions
