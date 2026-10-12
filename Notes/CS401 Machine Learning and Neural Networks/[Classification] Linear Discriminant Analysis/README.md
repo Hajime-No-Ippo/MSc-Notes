@@ -1,4 +1,4 @@
-# Linear Discriminant Analysis Implementations — CS401
+# [Classification] Linear Discriminant Analysis Implementations — CS401
 
 From-scratch implementation of (binary) LDA, matching the lecture notes.
 

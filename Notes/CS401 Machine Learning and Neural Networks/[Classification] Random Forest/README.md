@@ -1,4 +1,4 @@
-# Random Forest Implementations — CS401
+# [Classification] Random Forest Implementations — CS401
 
 From-scratch implementation of a Random Forest, matching the lecture notes.
 

@@ -1,4 +1,4 @@
-# Support Vector Machine Implementations — CS401
+# [Classification] Support Vector Machine Implementations — CS401
 
 From-scratch implementation of a linear soft-margin SVM, matching the lecture notes.
 

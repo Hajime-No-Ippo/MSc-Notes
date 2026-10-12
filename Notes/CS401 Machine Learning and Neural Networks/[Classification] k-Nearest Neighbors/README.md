@@ -1,4 +1,4 @@
-# k-Nearest Neighbors Implementations — CS401
+# [Classification] k-Nearest Neighbors Implementations — CS401
 
 From-scratch implementation of kNN, matching the lecture notes.
 

@@ -1,4 +1,4 @@
-# Decision Tree Implementations — CS401
+# [Classification] Decision Tree Implementations — CS401
 
 From-scratch implementation of a CART decision tree, matching the lecture notes.
 

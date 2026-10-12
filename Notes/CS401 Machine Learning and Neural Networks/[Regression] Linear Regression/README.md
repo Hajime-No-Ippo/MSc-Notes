@@ -1,4 +1,4 @@
-# Linear Regression Implementations — CS401
+# [Regression] Linear Regression Implementations — CS401
 
 From-scratch implementations of Linear Regression, matching the lecture notes.
 

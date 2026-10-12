@@ -1,4 +1,4 @@
-# Logistic Regression Implementations — CS401
+# [Classification] Logistic Regression Implementations — CS401
 
 From-scratch implementation of Logistic Regression, matching the lecture notes.
 

@@ -3,7 +3,7 @@ tags: [cs401, machine-learning, classification, regularization, lecture-notes]
 module: CS401
 topic: "Machine Learning — Classification & Regularization"
 date: 2026-10-08
-next: "[[]]"
+next: "[[2026-10-12 - Evaluation Measures]]"
 prev: "[[2026-09-28 - Neural Networks & Perceptron]]"
 ---
 
@@ -72,6 +72,26 @@ Linear regression is **not** a good algorithm for classification problems.
 | **Instance-based** | k-Nearest Neighbors (kNN) |
 | **Tree-based** | Decision Trees · Random Forest · Gradient Boosted Trees (XGBoost, LightGBM, CatBoost) |
 | **Probabilistic / other** | Support Vector Machines (SVM) · Neural Networks / Deep Learning |
+
+### Classification vs Regression — What Each Algorithm Is For
+
+> [!tip] The naming trap
+> "Regression" in **Logistic Regression** is a name, not a behaviour — it is a **classification** algorithm. **Linear Regression** is the only one of the CS401 set that is strictly regression.
+
+| Algorithm | Primary use case | Notes |
+|---|---|---|
+| **Linear Regression** | **Regression** (continuous numbers) | Predict house price, temperature, stock value. Never for category labels. |
+| **Logistic Regression** | **Classification** (binary / multi-class) | Despite the name; outputs a probability in $[0,1]$. |
+| **LDA** | **Classification** | Discriminative; finds the projection that best separates classes, then classifies by distance. |
+| **k-Nearest Neighbors** | **Classification** | Instance-based: votes among the $k$ closest training points. (Can be adapted for regression = average of neighbours.) |
+| **Decision Tree** | **Classification** (standard) · also regression | Rule splits on features; regression = predict mean of leaves. |
+| **Random Forest** | **Classification** (most famous) · also regression | Bagged ensemble of trees; vote (classification) or average (regression). |
+| **SVM** | **Classification** (mainly) | Finds the max-margin boundary; also has an epsilon-regression variant (SVR). |
+| **Perceptron** | **Classification** | Single neuron + step; only works when data is linearly separable. |
+
+- **Strictly classification** (of the implemented set): Logistic Regression · LDA · Perceptron · SVM.
+- **Dual-use** (both, but famous for classification): Decision Tree · Random Forest · kNN.
+- **Strictly regression**: Linear Regression only.
 
 ---
 

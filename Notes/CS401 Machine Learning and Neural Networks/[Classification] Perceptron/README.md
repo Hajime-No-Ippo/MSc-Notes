@@ -1,4 +1,4 @@
-# Perceptron Implementations — CS401
+# [Classification] Perceptron Implementations — CS401
 
 From-scratch implementation of the Perceptron Learning Algorithm, matching the lecture notes.
 
