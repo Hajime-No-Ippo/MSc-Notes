@@ -3,7 +3,7 @@ tags: [cs320, computer-networks, http, reading-notes]
 module: CS320
 topic: "Computer Networks — The Web & HTTP"
 date: 2026-10-08
-next: "[[]]"
+next: "[[2026-10-13 - DNS]]"
 prev: "[[2026-09-21 - Introduction & Physical Layer]]"
 ---
 
