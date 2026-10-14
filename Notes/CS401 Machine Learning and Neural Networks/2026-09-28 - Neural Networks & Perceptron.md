@@ -111,23 +111,23 @@ Training data: (0,0)→0, (0,1)→0, (1,0)→0, (1,1)→1
 
 **Iteration 1** (starting: w₁=0, w₂=0, b=0, η=0.5):
 
-| x₁ | x₂ | y | z | ŷ | Error | Update |
-|---|---|---|---|---|---|---|
-| 0 | 0 | 0 | 0 | 1 | -1 | w₁=w₁+0.5·(-1)·0=0, b=0+0.5·(-1)·1=-0.5 |
-| 0 | 1 | 0 | -0.5 | 0 | 0 | no change |
-| 1 | 0 | 0 | -0.5 | 0 | 0 | no change |
-| 1 | 1 | 1 | 0.5 | 1 | 0 | no change |
+| x₁  | x₂  | y   | z    | ŷ   | Error | Update                                  |
+| --- | --- | --- | ---- | --- | ----- | --------------------------------------- |
+| 0   | 0   | 0   | 0    | 1   | -1    | w₁=w₁+0.5·(-1)·0=0, b=0+0.5·(-1)·1=-0.5 |
+| 0   | 1   | 0   | -0.5 | 0   | 0     | no change                               |
+| 1   | 0   | 0   | -0.5 | 0   | 0     | no change                               |
+| 1   | 1   | 1   | 0.5  | 1   | 0     | no change                               |
 
 After iteration 1: w₁=0, w₂=0, b=-0.5
 
 **Iteration 2**:
 
-| x₁ | x₂ | y | z | ŷ | Error | Update |
-|---|---|---|---|---|---|---|
-| 0 | 0 | 0 | -0.5 | 0 | 0 | no change |
-| 0 | 1 | 0 | -0.5 | 0 | 0 | no change |
-| 1 | 0 | 0 | -0.5 | 0 | 0 | no change |
-| 1 | 1 | 1 | 0.5 | 1 | 0 | no change |
+| x₁  | x₂  | y   | z    | ŷ   | Error | Update    |
+| --- | --- | --- | ---- | --- | ----- | --------- |
+| 0   | 0   | 0   | -0.5 | 0   | 0     | no change |
+| 0   | 1   | 0   | -0.5 | 0   | 0     | no change |
+| 1   | 0   | 0   | -0.5 | 0   | 0     | no change |
+| 1   | 1   | 1   | 0.5  | 1   | 0     | no change |
 
 All correct — **converged!** Final: w₁=0, w₂=0, b=-0.5
 
@@ -136,12 +136,12 @@ All correct — **converged!** Final: w₁=0, w₂=0, b=-0.5
 
 ## Perceptron vs Sigmoid Neuron
 
-| Feature | Perceptron | Sigmoid Neuron |
-|---|---|---|
-| Output | 0 or 1 (hard step) | 0 to 1 (smooth) |
-| Learning rule | w += η(y-ŷ)x | Gradient descent |
-| Can learn XOR? | No | Yes (with hidden layers) |
-| Guarantee | Converges if linearly separable | Minimises loss (may be local min) |
+| Feature        | Perceptron                      | Sigmoid Neuron                    |
+| -------------- | ------------------------------- | --------------------------------- |
+| Output         | 0 or 1 (hard step)              | 0 to 1 (smooth)                   |
+| Learning rule  | w += η(y-ŷ)x                    | Gradient descent                  |
+| Can learn XOR? | No                              | Yes (with hidden layers)          |
+| Guarantee      | Converges if linearly separable | Minimises loss (may be local min) |
 
 ## Key Insight
 
