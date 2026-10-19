@@ -406,6 +406,17 @@ Classification ─(class)───► predict a category
 
 ---
 
+## CA1 — Decision Trees (Due 1 Nov 2026)
+
+- Spec: `~/Downloads/CS401 CA1.pdf` · template: `~/Downloads/CA_DecisionTrees_template.ipynb`
+- Rules: keep every `[DT-...]` header exactly, strict word limits, submit one `.ipynb` that runs top-to-bottom with outputs already populated.
+- Dataset: **Wine** (UCI, 178 × 13 features, 3 cultivar classes) via `sklearn.datasets.load_wine()` — same data bundled in sklearn, so the notebook runs standalone.
+- Notebook: `~/CS401 Machine_Learning_&_Neural_Network/CA_DecisionTrees.ipynb` (kernel `ml_env`; build + execute with venv jupyter).
+- Key results: default gini tree depth 3 / 6 leaves, test acc **0.899** (train 1.000, two 1-sample leaves); entropy drops to **0.843** with same architecture; `min_samples_leaf` 1/5/20 → 0.899 / 0.865 / 0.876 while train–test gap narrows 10.1 → 6.8 pts (bias–variance trade-off, default still best on this small separable set).
+- **Open:** programme code missing from the title cell (only field not filled in).
+
+---
+
 ## Related
 
 - [[2026-09-28 - Linear Models]]

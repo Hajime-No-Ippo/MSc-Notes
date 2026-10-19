@@ -11,7 +11,7 @@ prev: "[[2026-10-13 - DNS]]"
 
 > [!info] Lab 4 Reading — 2026-10-18
 > CS320 Computer Networks · Kurose & Ross, *Ch. 3 — Transport Layer* (§3.1–3.4)
-> Source: `CS320_Lab4_reading_material.pdf`
+> Sources: `CS320_Lab4_reading_material.pdf`, `Lab 4 Summarized.pdf` (quiz notes)
 
 **Overview**
 
@@ -191,6 +191,114 @@ The reading ends where §3.4 begins — next up is the **rdt** protocol build-up
 - The problem: the layer below may be **unreliable** (TCP runs over best-effort IP). Viewed abstractly: an unreliable point-to-point channel.
 - The framework (Fig 3.8): upper layer invokes `rdt_send()` on the sender side; sender/receiver incrementally built up over increasingly complex channel models (corruption, loss). Assumption: **packets arrive in order** (some may be lost, but never reordered).
 - Applies at **transport, link, and application layers** — "a candidate to lead the top-ten list of fundamentally important problems in networking".
+
+---
+
+## 5. Quiz Checklist (from `Lab 4 Summarized.pdf`)
+
+Quick self-test — everything below is examinable per the quiz notes:
+
+- [ ] Transport layer = **logical communication between processes** on different hosts; implemented in **end systems, not routers**.
+- [ ] Sender side: message → chunks + transport header → segment → IP datagram; routers ignore transport fields.
+- [ ] Transport vs network: **processes vs hosts**; transport services are **constrained by the network layer** below, but can add services it doesn't offer (reliable transfer, encryption).
+- [ ] UDP = unreliable, connectionless, unregulated. TCP = reliable, connection-oriented, congestion-controlled (equal share, regulates send rate) — both give **process-to-process delivery + error checking**.
+- [ ] IP = best-effort: no delivery, ordering, or integrity guarantee.
+- [ ] **UDP socket = 2-tuple (dst IP, dst port); TCP socket = 4-tuple (src IP, src port, dst IP, dst port).**
+- [ ] Port numbers 16-bit, 0–65535; **well-known 0–1023** (HTTP 80); client auto-assigns, server binds specific.
+- [ ] Return address: reply's dst port = request's src port (19157↔46428 inversion).
+- [ ] Two TCP segments from different sources → **different sockets** (4-tuple), unlike UDP.
+- [ ] Web server: welcoming socket per port; **thread per connection** in modern servers; persistent HTTP = one socket, non-persistent = socket churn.
+- [ ] Why UDP over TCP: **finer control** · **no handshake delay** (principal DNS reason) · **no connection state** (more clients) · **8-byte vs 20-byte header**.
+- [ ] RIP / SNMP / DNS run over UDP; e-mail / Telnet / Web / FTP run over TCP.
+- [ ] UDP lacks congestion control → crowds out TCP → why TCP streaming is rising (some orgs block UDP).
+- [ ] App-level reliability over UDP is possible (acks/retransmits in-app) but nontrivial.
+- [ ] UDP segment: 4 × 2-byte fields (src port, dst port, length, checksum) — RFC 768.
+- [ ] Checksum = 1s complement of 16-bit-word sum, overflow wraps; receiver sums incl. checksum → `1111111111111111` if clean. Detect-only, never recover (discard or warn). Justified by the **end-to-end principle**.
+- [ ] Reliable data transfer: no corruption/loss, in-order; TCP's service model; hard because the layer below may be unreliable.
+
+---
+
+## 6. Lab 4 — UDP Wireshark Lab (Q&A)
+
+> [!info] Lab questions
+> Captured with `client_UDP.py` (UDP echo, server port 12000) + Wireshark `udp` filter. Answers derived from packet traces and RFC 768.
+
+**Q1 — How many fields are in the UDP header? Name them.**
+
+**4 fields**: Source Port · Destination Port · Length · Checksum.
+
+**Q2 — Length (in bytes) of each header field.**
+
+**2 bytes each** (16 bits × 4 = **8-byte header total**). In Wireshark's packet bytes pane they appear as four 2-byte pairs:
+
+```
+32 bits
++----------------+----------------+----------------+----------------+
+|   Src Port (2B) |   Dst Port (2B) |   Length (2B)  |  Checksum (2B) |
++----------------+----------------+----------------+----------------+
+| Application data ...                                             |
++------------------------------------------------------------------+
+```
+
+**Q3 — The value in the Length field is the length of what?**
+
+The **entire UDP segment = header (8 bytes) + payload (application data)** — not just the payload.
+
+*Verify on the trace*: for the echo lab, the message `"hello"` (5 bytes) → Length field = `13` (0x000D = 8 + 5). Empty payload → Length = `8`.
+
+**Q4 — Maximum number of bytes in a UDP payload?**
+
+The Length field is 16 bits → max value 65535.
+
+$$\text{max payload} = 65535 - 8 = \mathbf{65527}\ \text{bytes}$$
+
+(The real-world limit is slightly lower, 65507, because the 20-byte IP header must also fit in the 65535-byte IPv4 datagram — but the lab answer from the Length-field reasoning is 65527.)
+
+**Q5 — Largest possible source port number?**
+
+The source port field is 16 bits → **65535** (range 0–65535).
+
+**Q6 — Protocol number for UDP (hex + decimal)?**
+
+Look in the **IP header's Protocol field** of the datagram carrying the segment: **17 decimal = 0x11 hex**.
+
+(TCP = 6 decimal / 0x06 — useful to memorise both.)
+
+**Q7 — Request/reply pair: relationship between port numbers?**
+
+The ports are **swapped (inverted)** between request and reply:
+
+| | Source port | Destination port |
+|---|---|---|
+| Request (client → server) | client ephemeral e.g. 54321 | 12000 |
+| Reply (server → client) | 12000 | 54321 |
+
+The reply's **destination port = the request's source port** (the source port doubles as the *return address*), and the reply's **source port = the request's destination port**. Same IPs, ports inverted — exactly the Fig 3.4 behaviour from §2.
+
+**Q8 — TCP segment fields vs UDP packet fields — how do they differ?**
+
+TCP's header has **many more fields** than UDP's 4:
+
+| | **UDP** | **TCP** |
+|---|---|---|
+| Fields | src port, dst port, length, checksum | src port, dst port, **sequence number**, **acknowledgment number**, **data offset**, **flags (SYN/ACK/FIN/RST/…)**, **window size**, checksum, **urgent pointer**, **options** |
+| Header size | **8 bytes** fixed | **20 bytes** minimum (grows with options) |
+| Reliability support | none — no seq/ack | sequence + acknowledgment numbers, timers |
+| Flow/congestion | none | window size field; connection state |
+| Setup/teardown | none | SYN / FIN flags (3-way handshake) |
+
+Same two port fields at the top (so mux/demux works identically); everything after that is TCP's reliability machinery.
+
+**Q9 — Smallest UDP packet in the trace & checksum verification.**
+
+- Smallest UDP packets on a real trace are typically **DNS queries** (small fixed question section) — or an empty echo message (just the 8-byte header, Length = 8).
+- **Confirm no errors via the checksum** (RFC 768 / RFC 1071):
+  1. Take the segment as a sequence of **16-bit words** (big-endian), including header + data (conceptually plus the IP *pseudo-header*: src IP, dst IP, zero byte, protocol 17, UDP length).
+  2. **Sum all words** (one's complement arithmetic — any overflow wrap-around by adding it back in).
+  3. Take the **1s complement** (flip all bits) of the sum → this should equal the **Checksum field**.
+  4. Equivalently at the receiver: add *all* words including the checksum — a clean packet gives **`1111111111111111` (0xFFFF)**; any 0 bit ⇒ error.
+  - Practical method: paste the hex bytes into an online hex/1s-complement calculator, or let Wireshark display `[unchecked]`/`[wrong]` vs good status under the checksum line.
+- If a captured UDP packet shows checksum `0x0000`: in **IPv4** that means the sender *didn't compute* a checksum (legal but discouraged); in **IPv6** a zero checksum is illegal — the packet must be corrupted.
 
 ---
 

@@ -2,6 +2,9 @@
 
 From-scratch implementation of a CART decision tree, matching the lecture notes.
 
+> [!info] CA1
+> Completed CA1 notebook (Wine dataset, `sklearn` tree): `~/CS401 Machine_Learning_&_Neural_Network/CA_DecisionTrees.ipynb` — due 1 Nov 2026. Notes: [[2026-10-08 - Classification & Regularization]].
+
 ## Files
 
 | File | Language | Method | Description |
