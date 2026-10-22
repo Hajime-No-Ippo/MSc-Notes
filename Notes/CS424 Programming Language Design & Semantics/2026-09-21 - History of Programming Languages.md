@@ -3,7 +3,7 @@ tags: [cs424, programming-languages, semantics, lecture-notes]
 module: CS424
 topic: "History of Programming Languages & FORTRAN"
 date: 2026-09-21
-next: "[[]]"
+next: "[[2026-10-04 - LL(1) Parsing & Predictive Parsers]]"
 prev: ""
 ---
 
@@ -167,4 +167,4 @@ COMMON
 ---
 
 > [!tip] Next lecture
-> Fill in the `next` field in frontmatter once the next notes arrive.
+> [[2026-10-04 - LL(1) Parsing & Predictive Parsers]] — syntax analysis: left recursion, left factoring, FIRST/FOLLOW and predictive parsing.

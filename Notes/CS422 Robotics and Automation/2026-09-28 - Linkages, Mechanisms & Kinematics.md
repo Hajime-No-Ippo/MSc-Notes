@@ -3,7 +3,7 @@ tags: [cs422, robotics, automation, lecture-notes]
 module: CS422
 topic: "Robotics — Configurations, Kinematics & DH Convention"
 date: 2026-09-28
-next: "[[]]"
+next: "2026-10-13 - Introduction to ROS"
 prev: "2026-09-22 - Introduction to Robotics"
 ---
 
@@ -465,4 +465,4 @@ graph TD
 ---
 
 > [!tip] Next lecture
-> Fill in the `next` field in frontmatter once the next notes arrive.
+> Introduction to ROS (Robot Operating System) — see [[2026-10-13 - Introduction to ROS]].
