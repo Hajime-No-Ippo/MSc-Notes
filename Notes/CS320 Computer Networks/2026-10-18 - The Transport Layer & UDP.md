@@ -3,7 +3,7 @@ tags: [cs320, computer-networks, transport-layer, udp, reading-notes]
 module: CS320
 topic: "Computer Networks — The Transport Layer & UDP"
 date: 2026-10-18
-next: "[[]]"
+next: "[[2026-10-26 - TCP]]"
 prev: "[[2026-10-13 - DNS]]"
 ---
 
@@ -303,4 +303,4 @@ Same two port fields at the top (so mux/demux works identically); everything aft
 ---
 
 > [!tip] Next lecture
-> Fill in the `next` field in frontmatter once the next notes arrive.
+> [[2026-10-26 - TCP]] — Lab 5 reading (TCP).
