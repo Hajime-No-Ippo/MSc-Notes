@@ -3,7 +3,7 @@ tags: [cs416, cryptography, lecture-notes, symmetric-ciphers, des]
 module: CS416
 topic: "Symmetric Ciphers & DES"
 date: 2026-10-09
-next: "[[]]"
+next: "[[2026-11-04 - Hash Functions]]"
 prev: "[[2026-10-07 - Affine Cipher, Digraphs & Zero-Knowledge Protocol]]"
 ---
 
