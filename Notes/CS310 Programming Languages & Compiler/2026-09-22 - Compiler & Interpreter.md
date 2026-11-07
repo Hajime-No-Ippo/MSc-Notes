@@ -3,7 +3,7 @@ tags: [cs310, programming-languages, compiler, lecture-notes]
 module: CS310
 topic: "Compiler & Interpreter"
 date: 2026-09-28
-next: "[[]]"
+next: "[[2026-10-05 - Regular Expressions]]"
 prev: ""
 ---
 
