@@ -3,7 +3,7 @@ tags: [cs310, programming-languages, compiler, finite-automata, nfa, dfa, thomps
 module: CS310
 topic: "Thompson's Construction & Subset Construction"
 date: 2026-10-19
-next: "[[]]"
+next: "[[2026-10-26 - DFA Minimisation]]"
 prev: "[[2026-10-12 - Finite Automata (NFA & DFA)]]"
 ---
 

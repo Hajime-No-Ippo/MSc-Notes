@@ -3,7 +3,7 @@ tags: [cs357, lab, coq, rocq, proofs, lecture-notes]
 module: CS357
 topic: "Lab 2 — Rocq: Conjunction, Disjunction & Negation"
 date: 2026-10-21
-next: "[[]]"
+next: "[[2026-11-02 - Cyclone Modeling]]"
 prev: "[[2026-10-07 - Lab 1 Rocq Proofs]]"
 ---
 
