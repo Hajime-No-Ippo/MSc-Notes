@@ -3,7 +3,7 @@ tags: [cs320, lab, computer-networks, transport-layer, tcp, wireshark, lecture-n
 module: CS320
 topic: "Lab 5 — TCP: Wireshark Lab"
 date: 2026-11-05
-next: "[[]]"
+next: "[[2026-11-23 - Lab 6 IP Protocol - Wireshark Lab]]"
 prev: "[[2026-10-26 - TCP]]"
 ---
 
