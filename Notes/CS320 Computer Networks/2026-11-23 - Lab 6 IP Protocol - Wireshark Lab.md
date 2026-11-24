@@ -139,25 +139,25 @@ IPv6 fields: Version (4b) · Traffic class (8b, ≈ TOS) · **Flow label** (20b)
 
 The lab captures an execution of **traceroute** and inspects the IP headers. (Standard Kurose trace `ip-ethereal-trace-1`: client `192.168.1.102`.)
 
-| # | Question | Key answer / method |
-|---|---|---|
-| q1 | Your computer's IP address | read the **source** address of the first ICMP echo request |
-| q2 | Upper-layer protocol field | **1** (ICMP) |
-| q3 | IP header bytes / payload bytes | header length field ×4 (typ. **20 B**); payload = total length − header |
-| q4 | Fragmented? | check fragment offset = 0 and "more fragments" flag = 0 → **not fragmented** |
-| q5 | Fields that always change | **Identification** (+1 each), **header checksum**, **TTL** |
-| q6 | Fields that stay constant | version, header length, TOS, protocol, src IP, dst IP |
-| q7 | Identification pattern | increments **by 1** per datagram |
-| q8 | TTL-exceeded reply: Identification + TTL | TTL = **64** (or 255); each reply has its own Identification |
-| q9 | Do they stay unchanged? | TTL stays constant; Identification changes per reply |
-| q10 | Fragmented at 2000 B? | **yes** → 2 fragments (Ethernet MTU 1500 → max 1480 B data/fragment) |
-| q11 | First fragment | "more fragments" flag = **1**, offset = **0**, length = 1500 |
-| q12 | Second fragment | flag = **0**, offset = **185** (=1480/8) → it is the last |
-| q13 | Fields changed between fragments | total length, flags, fragment offset, checksum |
-| q14 | Fragments at 3500 B? | **3 fragments** (1500 + 1500 + remainder) |
-| q15 | Fields changed among fragments | same as q13 (offset/flag/checksum/length) |
-| q16 | UDP inside IP | protocol field = **17** instead of 1 |
-| q17 | TCP inside IP | protocol field = **6** instead of 1 |
+| #   | Question                                 | Key answer / method                                                          |
+| --- | ---------------------------------------- | ---------------------------------------------------------------------------- |
+| q1  | Your computer's IP address               | read the **source** address of the first ICMP echo request                   |
+| q2  | Upper-layer protocol field               | **1** (ICMP)                                                                 |
+| q3  | IP header bytes / payload bytes          | header length field ×4 (typ. **20 B**); payload = total length − header      |
+| q4  | Fragmented?                              | check fragment offset = 0 and "more fragments" flag = 0 → **not fragmented** |
+| q5  | Fields that always change                | **Identification** (+1 each), **header checksum**, **TTL**                   |
+| q6  | Fields that stay constant                | version, header length, TOS, protocol, src IP, dst IP                        |
+| q7  | Identification pattern                   | increments **by 1** per datagram                                             |
+| q8  | TTL-exceeded reply: Identification + TTL | TTL = **64** (or 255); each reply has its own Identification                 |
+| q9  | Do they stay unchanged?                  | TTL stays constant; Identification changes per reply                         |
+| q10 | Fragmented at 2000 B?                    | **yes** → 2 fragments (Ethernet MTU 1500 → max 1480 B data/fragment)         |
+| q11 | First fragment                           | "more fragments" flag = **1**, offset = **0**, length = 1500                 |
+| q12 | Second fragment                          | flag = **0**, offset = **185** (=1480/8) → it is the last                    |
+| q13 | Fields changed between fragments         | total length, flags, fragment offset, checksum                               |
+| q14 | Fragments at 3500 B?                     | **3 fragments** (1500 + 1500 + remainder)                                    |
+| q15 | Fields changed among fragments           | same as q13 (offset/flag/checksum/length)                                    |
+| q16 | UDP inside IP                            | protocol field = **17** instead of 1                                         |
+| q17 | TCP inside IP                            | protocol field = **6** instead of 1                                          |
 
 > [!warning] Ethernet 1500-byte limit
 > On Ethernet, IP packets >1500 B should fragment. If Wireshark reports one oversized datagram, it's the Ethernet-driver/Wireshark interaction — use the provided trace instead.
