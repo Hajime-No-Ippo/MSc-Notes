@@ -3,7 +3,7 @@ tags: [cs401, machine-learning, evaluation, metrics, lecture-notes]
 module: CS401
 topic: "Machine Learning — Evaluation Measures"
 date: 2026-10-12
-next: "[[]]"
+next: "[[2026-11-25 - CA2 CNN Implementation & Evaluation]]"
 prev: "[[2026-10-08 - Classification & Regularization]]"
 ---
 
